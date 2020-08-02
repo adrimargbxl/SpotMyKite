@@ -1,25 +1,29 @@
 import * as React from 'react';
 import { useState } from 'react';
+import LocationModal from './Modals/LocationModal';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { Segment, Icon } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
+
 
 export default ({ spotLists }) => {
   const [viewport, setViewport] = useState({
-    width: 850,
+    width: 800,
     height: 550,
     latitude: 51.2,
     longitude: 2.9,
     zoom: 9
   });
 
-  function clickEvent () {
-    console.log("hello")
-  }
-
-  const markers = spotLists.map(spot => <Marker key={spot.city.id} latitude={spot.city.coord.lat} longitude={spot.city.coord.lon} ><Icon onClick={clickEvent} className="map marker alternate huge link icon" style={{ color: "#E7555D" }}></Icon></Marker>);
+  const markers = spotLists.map(spot =>
+    <Marker
+      key={spot.city.id}
+      latitude={spot.city.coord.lat}
+      longitude={spot.city.coord.lon} >
+      <LocationModal spot={spot} />
+    </Marker>);
 
   return (
-    <Segment compact>
+    <Segment compact style={{ backgroundColor: "rgb(255,255,255,0.7)" }}>
 
       <ReactMapGL
         {...viewport}
