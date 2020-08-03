@@ -3,14 +3,25 @@ import { Form, Segment, Button } from 'semantic-ui-react';
 
 //need to implement drop-down fields instead of free-writing
 
-const UserForm = ({ onChange }) => {
+const UserForm = ({ onChange, sortList }) => {
   console.log(onChange);
   const [weight, setWeight] = useState('');
   const [level, setLevel] = useState('');
 
+  const levelOptions = [
+    { key: 'b', text: 'Beginner', value: 'beginner' },
+    { key: 'i', text: 'Intermediate', value: 'intermediate' },
+    { key: 'e', text: 'Expert', value: 'expert' },
+  ];
+
   return (
     <Segment style={{ width: '46vw', backgroundColor: 'rgb(255,255,255,0.7)' }}>
-      <Form onSubmit={() => onChange(weight, level)}>
+      <Form
+        onSubmit={() => {
+          sortList();
+          onChange(weight, level);
+        }}
+      >
         <Form.Field>
           <label>Weight</label>
           <input
@@ -25,6 +36,7 @@ const UserForm = ({ onChange }) => {
           <label>Level</label>
           <input
             placeholder="Level"
+            options={levelOptions}
             onChange={(e) => {
               setLevel(e.target.value);
             }}
@@ -38,12 +50,6 @@ const UserForm = ({ onChange }) => {
 };
 
 export default UserForm;
-
-// const levelOptions = [
-//   { key: 'b', text: 'Beginner', value: 'beginner' },
-//   { key: 'i', text: 'Intermediate', value: 'intermediate' },
-//   { key: 'e', text: 'Expert', value: 'expert' },
-// ]
 
 // const weightOptions = [
 //   { key: '43', text: '43-50', value: 46 },

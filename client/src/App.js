@@ -33,6 +33,17 @@ export default () => {
     });
   };
 
+  const onSearch = (term) => {
+    ApiClient.fetchRequest(term).then((data) =>
+      setSpotLists((spotLists) => [...spotLists, data])
+    );
+  };
+
+  const sortList = () => {
+    spotLists.sort((a, b) => b.wind.speed - a.wind.speed);
+    setSpotLists([...spotLists]);
+  };
+
   useEffect(() => {
     for (let spot of belgianKiteSpots) {
       ApiClient.fetchRequest(spot).then((data) =>
@@ -62,7 +73,7 @@ export default () => {
       </video>
 
       <div>
-        <Navbar />
+        <Navbar onSearch={onSearch} sortList={sortList} />
         <Router path="/">
           <Grid columns="equal" centered>
             <Grid.Row>
@@ -78,6 +89,7 @@ export default () => {
                   onChange={(value1, value2) => {
                     setFormData([value1, value2]);
                   }}
+                  sortList={sortList}
                 />
                 <SpotMap spotLists={spotLists} />
               </Grid.Column>
