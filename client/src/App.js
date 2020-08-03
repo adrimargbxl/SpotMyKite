@@ -13,6 +13,7 @@ import video from './video/video.mp4';
 export default () => {
 
   const [spotLists, setSpotLists] = useState([]);
+  const [forecastList, setForecastList] = useState([]);
   const [formData, setFormData] = useState([]);
 
   console.log(formData);
@@ -23,8 +24,11 @@ export default () => {
     for (let spot of belgianKiteSpots) {
       ApiClient.fetchRequest(spot)
         .then(data => setSpotLists((spotLists) => [...spotLists, data]));
+      ApiClient.forecastRequest(spot)
+        .then(data => setForecastList((forecastList) => [...forecastList, data]));
     }
   }, []);
+
 
   return (
     <>
@@ -43,7 +47,8 @@ export default () => {
         <source src={video} type="video/mp4" />
       </video>
 
-      <div>
+      <div >
+        {console.log(forecastList)}
         <Navbar />
         <Router path="/">
           <Grid columns="equal" centered >
@@ -59,7 +64,7 @@ export default () => {
           </Grid>
         </Router>
         <Router path="/hello">
-          <SpotMap spotLists={spotLists} />
+          <div>hello</div>
         </Router>
       </div>
 

@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { useState } from 'react';
-import LocationModal from './Modals/LocationModal';
+import PopupCam from './Modals/PopupCam';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import { Segment } from 'semantic-ui-react';
 
 
 export default ({ spotLists }) => {
   const [viewport, setViewport] = useState({
-    width: 800,
-    height: 550,
+    width: "45vw",
+    height: "58.7vh",
     latitude: 51.2,
     longitude: 2.9,
     zoom: 9
@@ -16,10 +16,10 @@ export default ({ spotLists }) => {
 
   const markers = spotLists.map(spot =>
     <Marker
-      key={spot.city.id}
-      latitude={spot.city.coord.lat}
-      longitude={spot.city.coord.lon} >
-      <LocationModal spot={spot} />
+      key={spot.id}
+      latitude={spot.coord.lat}
+      longitude={spot.coord.lon} >
+      <PopupCam spot={spot} />
     </Marker>);
 
   return (

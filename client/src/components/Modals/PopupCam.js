@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Image, Modal } from 'semantic-ui-react';
+import { Popup, Image, Header, Icon } from 'semantic-ui-react'
 
 const webcamId = {
   Oostduinkerke: "https://images-webcams.windy.com/63/1183493763/current/full/1183493763.jpg",
@@ -10,23 +10,16 @@ const webcamId = {
   Groenendijk: "https://images-webcams.windy.com/63/1183493763/current/full/1183493763.jpg",
   "De Panne": "https://images-webcams.windy.com/16/1454667016/current/full/1454667016.jpg"
 }
-//Work in Progerss
-const LocationModal = ({ spot }) => (
-  <Modal trigger={<Icon className="map marker alternate huge link icon" style={{ color: "#E7555D" }}></Icon>} centered={false}>
-    <Modal.Header>About</Modal.Header>
-    <Modal.Content image>
-      <Image wrapped size='medium' src={webcamId[spot.city.name]} />
-      <Modal.Description>
-        <p>
-          <h1>{spot.city.name}</h1>
-          We've found the following gravatar image associated with your e-mail
-          address.
-        </p>
-        <p>Is it okay to use this photo?</p>
-      </Modal.Description>
-    </Modal.Content>
-  </Modal>
+
+const PopupCam = ({ spot }) => (
+  <Popup style={{ backgroundColor: "rgb(255,255,255,0.7)" }} content={
+    <>
+      <Header as='h3'>{spot.name}</Header>
+      <Image wrapped size='medium' src={webcamId[spot.name]} />
+    </>
+
+  }
+    trigger={<Icon className="map marker alternate huge link icon" style={{ color: "#E7555D" }} />} />
 )
 
-export default LocationModal
-
+export default PopupCam

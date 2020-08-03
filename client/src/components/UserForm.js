@@ -9,7 +9,7 @@ const UserForm = ({ onChange }) => {
   const [level, setLevel] = useState("")
 
   return (
-    <Segment style={{ width: "878px", backgroundColor: "rgb(255,255,255,0.7)" }} >
+    <Segment style={{ width: "47vw", backgroundColor: "rgb(255,255,255,0.7)" }} >
       <Form onSubmit={() => onChange(weight, level)} >
         <Form.Field>
           <label>Weight</label>
@@ -21,7 +21,7 @@ const UserForm = ({ onChange }) => {
         </Form.Field>
         <Button type="Submit">Submit</Button>
       </Form>
-    </Segment>
+    </Segment >
   )
 }
 
