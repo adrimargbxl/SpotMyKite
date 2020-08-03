@@ -10,10 +10,9 @@ import video from './video/video.mp4';
 
 export default () => {
   const [spotLists, setSpotLists] = useState([]);
-  const [forecastList, setForecastList] = useState([]);
   const [formData, setFormData] = useState([]);
 
-  console.log(formData);
+  console.log(spotLists);
 
   const belgianKiteSpots = [
     'Oostduinkerke',
@@ -25,13 +24,19 @@ export default () => {
     'De Panne',
   ];
 
+  const onDelete = (term) => {
+    spotLists.map((list, i) => {
+      if (list.name === term) {
+        spotLists.splice(i, 1);
+        return setSpotLists([...spotLists]);
+      }
+    });
+  };
+
   useEffect(() => {
     for (let spot of belgianKiteSpots) {
       ApiClient.fetchRequest(spot).then((data) =>
         setSpotLists((spotLists) => [...spotLists, data])
-      );
-      ApiClient.forecastRequest(spot).then((data) =>
-        setForecastList((forecastList) => [...forecastList, data])
       );
     }
   }, []);
@@ -57,13 +62,16 @@ export default () => {
       </video>
 
       <div>
-        {console.log(forecastList)}
         <Navbar />
         <Router path="/">
           <Grid columns="equal" centered>
             <Grid.Row>
               <Grid.Column>
-                <KiteList spotLists={spotLists} formData={formData} />
+                <KiteList
+                  spotLists={spotLists}
+                  formData={formData}
+                  myClick={onDelete}
+                />
               </Grid.Column>
               <Grid.Column>
                 <UserForm

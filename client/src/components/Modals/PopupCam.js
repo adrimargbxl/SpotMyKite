@@ -24,7 +24,7 @@ const PopupCam = ({ spot }) => (
     content={
       <>
         <Header as="h3">{spot.name}</Header>
-        <Image wrapped size="medium" src={webcamId[spot.name]} />
+        <Image wrapped size="large" src={webcamId[spot.name]} />
       </>
     }
     trigger={
