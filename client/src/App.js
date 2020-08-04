@@ -4,8 +4,9 @@ import KiteList from './components/KiteList';
 import SpotMap from './components/SpotMap';
 import UserForm from './components/UserForm';
 import Navbar from './components/NavBar';
-import Router from './components/Router';
-import { Grid } from 'semantic-ui-react';
+import Info from './components/Info';
+import { Route, BrowserRouter } from 'react-router-dom';
+import { Grid, Container } from 'semantic-ui-react';
 import video from './video/video.mp4';
 
 export default () => {
@@ -73,32 +74,38 @@ export default () => {
       </video>
 
       <div>
-        <Navbar onSearch={onSearch} sortList={sortList} />
-        <Router path="/">
-          <Grid columns="equal" centered>
-            <Grid.Row>
-              <Grid.Column>
-                <KiteList
-                  spotLists={spotLists}
-                  formData={formData}
-                  myClick={onDelete}
-                />
-              </Grid.Column>
-              <Grid.Column>
-                <UserForm
-                  onChange={(value1, value2) => {
-                    setFormData([value1, value2]);
-                  }}
-                  sortList={sortList}
-                />
-                <SpotMap spotLists={spotLists} />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Router>
-        <Router path="/ExtendedForecast">
-          <div>hello</div>
-        </Router>
+        <BrowserRouter>
+          <div>
+            <Navbar onSearch={onSearch} />
+            <Route path="/" exact>
+              <Grid columns="equal" centered>
+                <Grid.Row>
+                  <Grid.Column>
+                    <KiteList
+                      spotLists={spotLists}
+                      formData={formData}
+                      myClick={onDelete}
+                      sortList={sortList}
+                    />
+                  </Grid.Column>
+                  <Grid.Column>
+                    <UserForm
+                      onChange={(value1, value2) => {
+                        setFormData([value1, value2]);
+                      }}
+                    />
+                    <SpotMap spotLists={spotLists} />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Route>
+            <Route path="/Info">
+              <Container centered>
+                <Info />
+              </Container>
+            </Route>
+          </div>
+        </BrowserRouter>
       </div>
     </>
   );

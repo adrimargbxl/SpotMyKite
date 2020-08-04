@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Input, Menu, Form } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import Logo from '../images/logo.png';
 import LogoIcon from '../images/kitesurfing.png';
-
-//incomplete
 
 export default class NavBar extends Component {
   state = { activeItem: 'home', search: '' };
 
   handleItemClick = (e, { name }) => {
+    e.preventDefault();
     this.setState({ activeItem: name });
   };
 
@@ -24,6 +24,7 @@ export default class NavBar extends Component {
         }}
       >
         <Menu
+          pointing
           style={{ backgroundColor: 'rgb(255,255,255,0.7)', width: '95vw' }}
         >
           <img
@@ -49,29 +50,28 @@ export default class NavBar extends Component {
           />
 
           <Menu.Item
-            href="/"
             name="home"
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
-          />
+          >
+            <Link to="/" style={{ color: 'black' }}>
+              Home
+            </Link>
+          </Menu.Item>
           <Menu.Item
-            href="/ExtendedForecast"
-            name="extended Forecast"
-            active={activeItem === 'Extended Forecast'}
+            name="info"
+            active={activeItem === 'info'}
             onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            href="/SpotList"
-            name="spot list"
-            active={activeItem === 'spot list'}
-            onClick={this.handleItemClick}
-          />
+          >
+            <Link to="/Info" style={{ color: 'black' }}>
+              Info
+            </Link>
+          </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item>
               <Form
                 onSubmit={() => {
                   this.props.onSearch(this.state.search);
-                  this.props.sortList();
                 }}
               >
                 <Input

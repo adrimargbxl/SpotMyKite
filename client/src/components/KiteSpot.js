@@ -15,6 +15,11 @@ export default ({ weather, formData, myClick }) => {
   const windDirection = d2d(weather.wind.deg);
   const windSpeed = Math.round((weather.wind.speed * 1.943844 * 100) / 100);
 
+  function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+  }
+
   const windDirectionArrow = (windDegree) => {
     return (
       <Icon
@@ -194,7 +199,26 @@ export default ({ weather, formData, myClick }) => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <HourlyForecast spotName={weather.name} />
+      <div
+        style={{
+          marginTop: '10px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <HourlyForecast spotName={weather.name} />
+        <Button>
+          <Icon
+            className="map outline"
+            onClick={() =>
+              openInNewTab(
+                'https://www.google.com/maps/dir/51.0963%C2%B0+N,+2.5906%C2%B0+E/51.2154%C2%B0+N,+2.9287%C2%B0+E/'
+              )
+            }
+          ></Icon>
+        </Button>
+      </div>
     </Segment>
   );
 };

@@ -18,7 +18,6 @@ const UserForm = ({ onChange, sortList }) => {
     <Segment style={{ width: '46vw', backgroundColor: 'rgb(255,255,255,0.7)' }}>
       <Form
         onSubmit={() => {
-          sortList();
           onChange(weight, level);
         }}
       >
@@ -30,17 +29,6 @@ const UserForm = ({ onChange, sortList }) => {
               setWeight(e.target.value);
             }}
             value={weight}
-          />
-        </Form.Field>
-        <Form.Field>
-          <label>Level</label>
-          <input
-            placeholder="Level"
-            options={levelOptions}
-            onChange={(e) => {
-              setLevel(e.target.value);
-            }}
-            value={level}
           />
         </Form.Field>
         <Button type="Submit">Submit</Button>

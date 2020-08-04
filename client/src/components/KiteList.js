@@ -1,8 +1,8 @@
 import React from 'react';
 import KiteSpot from './KiteSpot';
-import { Segment, Icon, Header, Container } from 'semantic-ui-react';
+import { Segment, Icon, Header, Container, Button } from 'semantic-ui-react';
 
-export default ({ spotLists, formData, myClick }) => (
+export default ({ spotLists, formData, myClick, sortList }) => (
   <Segment
     style={{ backgroundColor: 'rgb(255,255,255,0.7)', marginLeft: '2vw' }}
   >
@@ -12,6 +12,7 @@ export default ({ spotLists, formData, myClick }) => (
       </Icon>
       weather
     </Header>
+    <Button onClick={() => sortList()}>where's the wind</Button>
     <Container style={{ overflow: 'auto', maxHeight: '80vh' }}>
       {spotLists.map((spot) => (
         <KiteSpot
