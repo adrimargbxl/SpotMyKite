@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Segment, Icon, Grid, Image, Button } from 'semantic-ui-react';
 import PopupKite from './Modals/PopupKite';
 import KiteImage7 from '../images/7mKite.jpeg';
@@ -11,7 +11,7 @@ import KiteImageGeneric from '../images/genericKite.jpeg';
 import HourlyForecast from './Modals/HourlyForecast';
 const d2d = require('degrees-to-direction');
 
-export default ({ weather, formData, myClick }) => {
+export default ({ weather, formData, myClick, lat, lon }) => {
   const windDirection = d2d(weather.wind.deg);
   const windSpeed = Math.round((weather.wind.speed * 1.943844 * 100) / 100);
 
@@ -211,11 +211,12 @@ export default ({ weather, formData, myClick }) => {
         <Button>
           <Icon
             className="map outline"
-            onClick={() =>
+            onClick={(e) => {
+              e.preventDefault();
               openInNewTab(
-                'https://www.google.com/maps/dir/51.0963%C2%B0+N,+2.5906%C2%B0+E/51.2154%C2%B0+N,+2.9287%C2%B0+E/'
-              )
-            }
+                `https://www.google.com/maps/dir/${lat[0]},${lon[0]}/${weather.coord.lat},${weather.coord.lon}/`
+              );
+            }}
           ></Icon>
         </Button>
       </div>

@@ -65,7 +65,7 @@ function HourlyForecast({ spotName }) {
       onOpen={() => setOpen(true)}
       open={open}
       trigger={<Button mini>see today's forecast</Button>}
-      style={{ width: '80vw', height: '40vh' }}
+      style={{ width: '70vw', height: '35vh' }}
     >
       <Modal.Header>
         {forecast.length ? forecast[0].city.name : null}

@@ -6,7 +6,7 @@ import { Segment } from 'semantic-ui-react';
 
 export default ({ spotLists }) => {
   const [viewport, setViewport] = useState({
-    width: '45vw',
+    width: '44.5vw',
     height: '58.7vh',
     latitude: 51.2,
     longitude: 2.9,

@@ -12,8 +12,15 @@ import video from './video/video.mp4';
 export default () => {
   const [spotLists, setSpotLists] = useState([]);
   const [formData, setFormData] = useState([]);
+  const [lat, setLat] = useState([]);
+  const [lon, setLon] = useState([]);
 
-  console.log(spotLists);
+  useEffect(() => {
+    window.navigator.geolocation.getCurrentPosition((position) => {
+      setLat([position.coords.latitude, position.coords.longitude]);
+      setLon([position.coords.longitude]);
+    });
+  }, []);
 
   const belgianKiteSpots = [
     'Oostduinkerke',
@@ -86,6 +93,8 @@ export default () => {
                       formData={formData}
                       myClick={onDelete}
                       sortList={sortList}
+                      lat={lat}
+                      lon={lon}
                     />
                   </Grid.Column>
                   <Grid.Column>
