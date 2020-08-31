@@ -1,6 +1,5 @@
 ![GitHub](https://img.shields.io/github/license/adrimargbxl/SpotMyKite?style=plastic)
 ![GitHub contributors](https://img.shields.io/github/contributors/adrimargbxl/SpotMyKite?logo=github&style=plastic)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/adrimargbxl/SpotMyKite?logo=github&style=plastic)
 ![GitHub top language](https://img.shields.io/github/languages/top/adrimargbxl/SpotMyKite)
 ![GitHub language count](https://img.shields.io/github/languages/count/adrimargbxl/SpotMyKite)
 
@@ -20,7 +19,7 @@ SpotMyKite is a React-based Weather App targeting fellow Kiteboarders. It permit
 
 ## App Screenshot
 
-![Home Page](/client/src/images/logo.png)
+![Home Page](/client/src/images/Screenshot.png)
 
 ## Improvements on the current code base
 
