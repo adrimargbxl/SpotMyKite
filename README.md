@@ -23,7 +23,7 @@ SpotMyKite is a React-based Weather App targeting fellow Kiteboarders. It permit
 
 ## Improvements on the current code base
 
-- Map to relocated automatically depending on user location
+- Map to relocate automatically depending on user location
 - Form Validation for Weight Input
 - Improve kite images
 - Make website reactive
